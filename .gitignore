@@ -1,0 +1,11 @@
+secrets.*
+*.secrets.*
+*.tfstate
+*.tfstate.*
+key.*
+vault_pass
+.terraform/
+meta.txt
+
+!meta.txt.j2
+!secrets.tfvars.j2

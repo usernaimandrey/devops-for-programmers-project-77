@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - template:
+        src: ./templates/secret.tfvars.j2
+        dest: ../terraform/secrets.tfvars
+
+    - name: Get ssh key
+      ansible.builtin.shell: cat /home/$USER/.ssh/id_rsa.pub
+      register: ssh_key
+    
+    - name: Get user name
+      ansible.builtin.shell: echo $USER
+      register: user
+
+    - template:
+        src: ./templates/meta.txt.j2
+        dest: ../terraform/meta.txt
