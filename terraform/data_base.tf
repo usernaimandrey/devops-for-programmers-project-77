@@ -30,7 +30,7 @@ resource "yandex_mdb_postgresql_user" "hexlet" {
 
 resource "yandex_mdb_postgresql_database" "db1" {
   cluster_id = yandex_mdb_postgresql_cluster.dev-cluster.id
-  name = "db1"
+  name = var.db_name
   owner = yandex_mdb_postgresql_user.hexlet.name
 
   depends_on = [ yandex_mdb_postgresql_cluster.dev-cluster ]

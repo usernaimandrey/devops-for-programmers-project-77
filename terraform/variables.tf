@@ -1,5 +1,6 @@
 variable "dns_zone" {
   type      = string
+  default = "anshlyapnikov.ru"
 }
 
 variable "service_account_id" {
@@ -36,6 +37,16 @@ variable "db_user" {
 }
 
 variable "db_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "db_port" {
+  type      = number
+  sensitive = true
+}
+
+variable "db_name" {
   type      = string
   sensitive = true
 }

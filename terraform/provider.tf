@@ -1,4 +1,10 @@
 terraform {
+  cloud { 
+    organization = "anshlyapnikov" 
+    workspaces {
+      name = "hexlet"
+    }
+  } 
   required_providers {
     yandex = {
       source = "yandex-cloud/yandex"

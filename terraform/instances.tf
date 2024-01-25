@@ -84,7 +84,6 @@ resource "yandex_compute_instance_group" "alb-vm-group" {
       memory        = 1
       cores         = 2
     }
-
     boot_disk {
       mode = "READ_WRITE"
       initialize_params {
@@ -122,6 +121,26 @@ resource "yandex_compute_instance_group" "alb-vm-group" {
   application_load_balancer {
     target_group_name = "alb-tg"
   }
+    # connection {
+    #   type        = "ssh"
+    #   user        = "ubuntu"
+    #   private_key = file("~/.ssh/id_rsa")
+    #   host        = self.network_interface[0].nat_ip_address
+    # }
+
+    # provisioner "remote-exec" {
+    #   inline = [
+    #     <<EOT
+    #     sudo docker run -p 80:3000 --name hexlet \
+    #       -e REDMINE_DB_POSTGRES=${yandex_mdb_postgresql_cluster.dev-cluster.host.0.fqdn} \
+    #       -e REDMINE_DB_USERNAME=${var.db_user} \
+    #       -e REDMINE_DB_PASSWORD=${var.db_password} \
+    #       -e REDMINE_DB_PORT=${var.db_port} \
+    #       -e REDMINE_DB_DATABASE=${var.db_name} \
+    #       redmine
+    #     EOT
+    #   ]
+    # }
 
   depends_on = [ yandex_mdb_postgresql_cluster.dev-cluster ]
 }
